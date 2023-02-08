@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Redirect,
   Link,
+  redirect,
 } from "react-router-dom";
 
 import Login from "./components/Login";
@@ -30,11 +30,19 @@ function App() {
           LOGOUT.
         </Link>
       </header>
+
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/friends" element={<FriendsList />} />
-        <Route path="/friends/add" element={<AddFriend />} />
+        <Route exact path="/" element={<Login />} />
+        <Route
+          exact
+          path="/login"
+          render={() =>
+            localStorage.getItem("token") ? <redirect to="/" /> : <Login />
+          }
+        />
+
+        <Route exact path="/friends" element={<FriendsList />} />
+        <Route exact path="/friends/add" element={<AddFriend />} />
       </Routes>
     </div>
   );

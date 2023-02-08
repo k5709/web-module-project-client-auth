@@ -2,16 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../App.css";
 
-// const [friends, setFriends] = useState([]);
-
-// useEffect(() => {
-//   axios
-//     .get(`/api/friends`)
-//     .then((res) => console.log(res))
-//     .catch((err) => console.log(err));
-// });
-
 function FriendsList() {
+  const [friends, setFriends] = useState([]);
+
   return (
     <div>
       <h2>FriendsList</h2>

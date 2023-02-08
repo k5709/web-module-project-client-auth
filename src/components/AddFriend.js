@@ -18,10 +18,12 @@ function AddFriend() {
       <form>
         <div>
           <label htmlFor="friendname">FRIEND NAME: </label>
+          <br />
           <input onChange={handleName} />
         </div>
         <div>
           <label htmlFor="friendname">FRIEND EMAIL: </label>
+          <br />
           <input onChange={handleEmail} />
         </div>
         <button>Submit</button>
