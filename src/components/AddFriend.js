@@ -27,17 +27,25 @@ function AddFriend() {
   };
   return (
     <div>
-      <h1>ADD FRIEND</h1>
       <form className="add-friend" onSubmit={onSubmit}>
+        <h1>ADD FRIEND.</h1>
         <div>
           <label htmlFor="friendname">FRIEND NAME: </label>
           <br />
-          <input onChange={handleChange} name="name" />
+          <input
+            onChange={handleChange}
+            name="name"
+            placeholder="Name Required.."
+          />
         </div>
         <div>
           <label htmlFor="friendname">FRIEND EMAIL: </label>
           <br />
-          <input onChange={handleChange} name="email" />
+          <input
+            onChange={handleChange}
+            name="email"
+            placeholder="Email Required.."
+          />
         </div>
         <button>Submit</button>
       </form>

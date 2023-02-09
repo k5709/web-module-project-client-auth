@@ -34,12 +34,22 @@ function Login() {
       <div>
         <label htmlFor="username">USERNAME </label>
         <br />
-        <input onChange={handleChange} name="username" type="id" />
+        <input
+          onChange={handleChange}
+          name="username"
+          type="id"
+          placeholder="Username Required.."
+        />
       </div>
       <div>
         <label htmlFor="password">PASSWORD </label>
         <br />
-        <input onChange={handleChange} name="password" type="password" />
+        <input
+          onChange={handleChange}
+          name="password"
+          type="password"
+          placeholder="Password Required.."
+        />
       </div>
       <button>Submit</button>
     </form>

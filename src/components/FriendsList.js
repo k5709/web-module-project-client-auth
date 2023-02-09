@@ -19,7 +19,7 @@ function FriendsList() {
 
   return (
     <div className="friends-container">
-      <h2>Friends List.</h2>
+      <h1>Friends List.</h1>
       <ul className="friends-list">
         {friends.map((friend) => {
           return (
