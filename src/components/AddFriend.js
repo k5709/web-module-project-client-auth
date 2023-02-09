@@ -1,30 +1,43 @@
 import React from "react";
 import { useState } from "react";
-
-const handleName = (e) => {
-  console.log("name has changed");
-  setName(...e.target.value);
-};
-
-const handleEmail = (e) => {
-  console.log("email changed");
-  setEmail(e.target.value);
-};
+import axios from "axios";
 
 function AddFriend() {
+  const [friend, setFriend] = useState({
+    name: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    setFriend({ ...friend, [e.target.name]: e.target.value });
+    console.log(friend);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    axios
+      .post(`http://localhost:9000/api/friends`, friend, {
+        headers: {
+          authorization: token,
+        },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <h1>ADD FRIEND</h1>
-      <form>
+      <form className="add-friend" onSubmit={onSubmit}>
         <div>
           <label htmlFor="friendname">FRIEND NAME: </label>
           <br />
-          <input onChange={handleName} />
+          <input onChange={handleChange} name="name" />
         </div>
         <div>
           <label htmlFor="friendname">FRIEND EMAIL: </label>
           <br />
-          <input onChange={handleEmail} />
+          <input onChange={handleChange} name="email" />
         </div>
         <button>Submit</button>
       </form>

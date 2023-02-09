@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [creds, setCreds] = useState({
     username: "",
     password: "",
@@ -10,14 +13,18 @@ function Login() {
   const handleChange = (e) => {
     console.log("change occured");
     setCreds({ ...creds, [e.target.name]: e.target.value });
+    console.log(creds);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("submit clicked");
     axios
-      .post(`http://localhost:3000/api/login`, creds)
-      .then((res) => console.log(res))
+      .post("http://localhost:9000/api/login", creds)
+      .then((res) => {
+        const token = res.data.token;
+        localStorage.setItem("token", token);
+        navigate("/friends");
+      })
       .catch((err) => console.log(err));
   };
 
@@ -27,12 +34,12 @@ function Login() {
       <div>
         <label htmlFor="username">USERNAME </label>
         <br />
-        <input onChange={handleChange} name="username" />
+        <input onChange={handleChange} name="username" type="id" />
       </div>
       <div>
         <label htmlFor="password">PASSWORD </label>
         <br />
-        <input onChange={handleChange} name="password" />
+        <input onChange={handleChange} name="password" type="password" />
       </div>
       <button>Submit</button>
     </form>
